@@ -8,7 +8,7 @@ RUN go mod download
 COPY . /build
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o /anchore-kubernetes-admission-controller ./cmd/kubernetes-admission-controller/
 
-FROM alpine:3.10
+FROM alpine:3.18.3
 
 COPY --from=builder /anchore-kubernetes-admission-controller /anchore-kubernetes-admission-controller
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
